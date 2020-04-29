@@ -100,11 +100,14 @@ void MTBUtils::imageAlignment(int sampleIndex, int depth)
 				cv::Mat sample_mtb_resize, sample_ex_resize;
 				cv::Mat comp_mtb_resize, comp_ex_resize;
 
+				int resize_col = sample_mtb.cols / pow(2, d);
+				int resize_row = sample_mtb.rows / pow(2, d);
+
 				// resize mtb image and exclusive map
-				cv::resize(sample_mtb, sample_mtb_resize, cv::Size(pow(2, d), pow(2, d)));
-				cv::resize(sample_ex, sample_ex_resize, cv::Size(pow(2, d), pow(2, d)));
-				cv::resize(comp_mtb, comp_mtb_resize, cv::Size(pow(2, d), pow(2, d)));
-				cv::resize(comp_ex, comp_ex_resize, cv::Size(pow(2, d), pow(2, d)));
+				cv::resize(sample_mtb, sample_mtb_resize, cv::Size(resize_col, resize_row));
+				cv::resize(sample_ex, sample_ex_resize, cv::Size(resize_col, resize_row));
+				cv::resize(comp_mtb, comp_mtb_resize, cv::Size(resize_col, resize_row));
+				cv::resize(comp_ex, comp_ex_resize, cv::Size(resize_col, resize_row));
 				
 				//find shift
 				int directions[9][2] = { {0, 0}, {0, 1}, {0, -1}, {1, 0}, {1, 1}, {1, -1}, {-1, 0}, {-1, 1}, {-1, -1} };
